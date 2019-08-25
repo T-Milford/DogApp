@@ -1,0 +1,9 @@
+.images {
+    width: 200px;
+    /* doesn't work */
+}
+
+.dog_image {
+    width: 250px;
+    /* doesn't work */
+}
