@@ -2,24 +2,24 @@
 
 $('.request_dog').submit(event => {
     event.preventDefault();
-    let number = $('.number_input').val();
-    getImage(number);
+    let breed = $('.breed_input').val().toLowerCase();
+    getImage(breed);
 });
 
-function getImage(num) {
-    fetch('https://dog.ceo/api/breeds/image/random/' + num.toString())
+function getImage(dog) {
+    fetch(`https://dog.ceo/api/breed/${dog}/images/random`)
         .then(response => response.json())
         .then(responseJson => displayImage(responseJson))
         .catch(error => alert('Something went wrong. Try again later.'));
 }
 
+
 function displayImage(json) {
     console.log(json);
-    let image = json.message;
-    for (count = 0; count < image.length; count++) {
-        $('.dog_image').append(
-            `<img src="${image[count]}">`
-            ).css()
-        };
+    if (json.status == "error") {
+        $('.dog_image').append(`<p>Breed not found in database.</p>`)
     }
-
+    else {
+        $('.dog_image').append(`<img src=${json.message}>`)
+    }
+}
