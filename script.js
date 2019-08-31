@@ -17,9 +17,9 @@ function getImage(dog) {
 function displayImage(json) {
     console.log(json);
     if (json.status == "error") {
-        $('.dog_image').append(`<p>Breed not found in database.</p>`)
+        $('.dog_image').html(`<p>Breed not found in database.</p>`)
     }
     else {
-        $('.dog_image').append(`<img src=${json.message}>`)
+        $('.dog_image').html(`<img src=${json.message}>`)
     }
 }
